@@ -12,12 +12,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+// Required args
 @AllArgsConstructor
+// Powinnien byc interface TaskService i implementcja TaskServiceImpl
 public class TaskService {
     private final TaskRepository taskRepository;
 
 
     public Long saveTask(TaskDto taskDto) {
+        //Powinnienes korzystac wstrzyknac clock i na clock wywolwac clock.now() inaczej tyego nie da sie testowac
         Tasks tasks = new Tasks(taskDto.getTitle(), taskDto.getDescription(),
                 taskDto.getPriority(), Instant.now(), false);
         taskRepository.save(tasks);
@@ -26,12 +29,16 @@ public class TaskService {
 
     public Optional<TaskDto> getTaskById(Long id) {
         return taskRepository.findById(id)
+                // Dodaj mapstructa do projektui skorzystaj
                 .map(task -> new TaskDto(task.getId(), task.getTitle(), task.getDescription(),
                         task.getPriority(), task.getCreateDate(), task.isCompleted()));
     }
 
     public List<TaskDto> getAll() {
         List<TaskDto> taskDto = new ArrayList<>();
+
+        // nie wiem jak zachowuje sie forEach z taskRepository.findAll() czy pryzpadkiem nie wolal findAll wiele razy
+        // Czmeu nie streamem?
         for (Tasks tasks : taskRepository.findAll()) {
             taskDto.add(new TaskDto(tasks.getId(), tasks.getTitle(), tasks.getDescription(),
                     tasks.getPriority(), tasks.getCreateDate(), tasks.isCompleted()));
@@ -40,6 +47,7 @@ public class TaskService {
     }
 
     public Optional<TaskDto> updateTask(Long id, TaskDto taskDto) {
+        // Uzywalbym Konwencji UpdateTaskRequest i  UpdateTaskResponse
         Optional<Tasks> optionalTask = taskRepository.findById(id);
         if (optionalTask.isPresent()) {
             Tasks task = optionalTask.get();
@@ -48,6 +56,7 @@ public class TaskService {
             return Optional.of(new TaskDto(updatedTask.getTitle(), updatedTask.getDescription(), updatedTask.getPriority(),
                     updatedTask.getCreateDate(), updatedTask.isCompleted()));
         } else {
+            // Rzuc bledem a nie zwracaj optional jak nie da sie znalezc
             return Optional.empty();
         }
     }

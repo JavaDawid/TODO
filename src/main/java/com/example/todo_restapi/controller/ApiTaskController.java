@@ -39,6 +39,7 @@ public class ApiTaskController {
     public ResponseEntity<List<TaskDto>> getAllTasks() {
         List<TaskDto> allTasks = taskService.getAll();
         if (!allTasks.isEmpty()) {
+            // Created WTF?
             return ResponseEntity.status(HttpStatus.CREATED).body(allTasks);
         } else {
             return ResponseEntity.ok(allTasks);
@@ -47,6 +48,7 @@ public class ApiTaskController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> finishTask(@PathVariable Long id, @RequestBody TaskDto taskDto) {
+        // zwracalbym 200 OK jak udalo sie zrobic update
         return taskService.updateTask(id, taskDto)
                 .map(taskDto1 -> ResponseEntity.noContent().build())
                 .orElse(ResponseEntity.notFound().build());
@@ -54,6 +56,7 @@ public class ApiTaskController {
 
     @PutMapping("/task/{id}")
     public ResponseEntity<Object> replaceTask(@PathVariable Long id, @RequestBody TaskDto taskDto) {
+        // updateTask nie replaceTask
         return taskService.replaceTask(id, taskDto)
                 .map(taskDto1 -> ResponseEntity.noContent().build())
                 .orElse(ResponseEntity.notFound().build());
