@@ -1,5 +1,6 @@
 package com.example.todo_restapi.service;
 
+import com.example.todo_restapi.exception.TaskNotExistException;
 import com.example.todo_restapi.models.TaskDto;
 import com.example.todo_restapi.models.Tasks;
 import com.example.todo_restapi.repository.TaskRepository;
@@ -18,16 +19,20 @@ public class TaskService {
 
 
     public Long saveTask(TaskDto taskDto) {
-        Tasks tasks = new Tasks(taskDto.getTitle(), taskDto.getDescription(),
+        Tasks task = new Tasks(taskDto.getTitle(), taskDto.getDescription(),
                 taskDto.getPriority(), Instant.now(), false);
-        taskRepository.save(tasks);
-        return tasks.getId();
+        Tasks savedTask = taskRepository.save(task);
+        return savedTask.getId();
     }
 
     public Optional<TaskDto> getTaskById(Long id) {
-        return taskRepository.findById(id)
-                .map(task -> new TaskDto(task.getId(), task.getTitle(), task.getDescription(),
-                        task.getPriority(), task.getCreateDate(), task.isCompleted()));
+        if (id > 0 && id < taskRepository.count()) {
+            return taskRepository.findById(id)
+                    .map(task -> new TaskDto(task.getId(), task.getTitle(), task.getDescription(),
+                            task.getPriority(), task.getCreateDate(), task.isCompleted()));
+        } else {
+            throw new TaskNotExistException(id);
+        }
     }
 
     public List<TaskDto> getAll() {
@@ -39,11 +44,11 @@ public class TaskService {
         return taskDto;
     }
 
-    public Optional<TaskDto> updateTask(Long id, TaskDto taskDto) {
+    public Optional<TaskDto> endTask(Long id) {
         Optional<Tasks> optionalTask = taskRepository.findById(id);
         if (optionalTask.isPresent()) {
             Tasks task = optionalTask.get();
-            task.setCompleted(taskDto.isCompleted());
+            task.setCompleted(true);
             Tasks updatedTask = taskRepository.save(task);
             return Optional.of(new TaskDto(updatedTask.getTitle(), updatedTask.getDescription(), updatedTask.getPriority(),
                     updatedTask.getCreateDate(), updatedTask.isCompleted()));
@@ -56,6 +61,7 @@ public class TaskService {
         Optional<Tasks> optionalTask = taskRepository.findById(id);
         if (optionalTask.isPresent()) {
             Tasks task = optionalTask.get();
+            task.setId(id);
             task.setTitle(taskDto.getTitle());
             task.setDescription(taskDto.getDescription());
             task.setPriority(taskDto.getPriority());
@@ -68,6 +74,11 @@ public class TaskService {
     }
 
     public void deleteTask(Long id) {
-        taskRepository.deleteById(id);
+        Optional<Tasks> taskOptional = taskRepository.findById(id);
+        if (taskOptional.isPresent()) {
+            taskRepository.delete(taskOptional.get());
+        } else {
+            throw new TaskNotExistException(id);
+        }
     }
 }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabela zadań</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        table, td {
+            border: 1px solid black;
+            max-width: 1000px;
+            margin: auto;
+        }
+        a{
+            text-align: center;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<h1>Lista zadań</h1>
+<table>
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Tytuł</td>
+        <td>Opis</td>
+        <td>Priorytet</td>
+        <td>Data utworzenia</td>
+        <td>Zakończono</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tasks :${tasks}" th:object="${tasks}">
+        <td th:text="*{id}"></td>
+        <td th:text="*{title}"></td>
+        <td th:text="*{description}"></td>
+        <td th:text="*{priority}"></td>
+        <td th:text="*{#temporals.format(createDate,'dd-MM-yyyy HH:mm')}"></td>
+        <td th:text="*{completed}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/">Strona główna</a>
+
+</body>
+</html>

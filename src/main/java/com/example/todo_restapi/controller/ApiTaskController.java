@@ -46,8 +46,8 @@ public class ApiTaskController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> finishTask(@PathVariable Long id, @RequestBody TaskDto taskDto) {
-        return taskService.updateTask(id, taskDto)
+    public ResponseEntity<Object> finishTask(@PathVariable Long id) {//usunięcie @RequestBody TaskDto taskDto
+        return taskService.endTask(id)//usunięcie taskDto z metody
                 .map(taskDto1 -> ResponseEntity.noContent().build())
                 .orElse(ResponseEntity.notFound().build());
     }

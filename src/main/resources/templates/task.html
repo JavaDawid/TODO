@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie</title>
+    <style>
+        h1, p, form {
+            text-align: center;
+        }
+
+        a {
+            text-align: center;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<h1>Zadanie</h1>
+<p th:text="${'Id:' +task.id}">ID</p>
+<p th:text="${'Tytuł:' +task.title}">Tytuł</p>
+<p th:text="${'Opis:' +task.description}">Opis</p>
+<p th:text="${'Priorytet:' +task.priority}">Priorytet</p>
+<p th:text="${'Data utworzenia:' +#temporals.format(task.createDate,'dd-MM-yyyy HH:mm')}">Data utworzenia</p>
+<p th:text="${'Zakończone:' +task.completed}">Czy jest zakończone</p>
+
+<form action="/task/update" method="get">
+    <input type="hidden" name="id" th:value="${task.id}">
+    <button type="submit">Edytuj zadanie</button>
+</form>
+
+<form action="/task/end" method="post">
+    <input type="hidden" name="id" th:value="${task.id}">
+    <button type="submit">Zakończ zadanie</button>
+</form>
+
+<form action="/task/delete" method="post">
+    <input type="hidden" name="id" th:value="${task.id}">
+    <button type="submit">Usuń zadanie</button>
+</form>
+
+<a href="/">Strona główna</a>
+</body>
+
+</html>
