@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/tasks")
 @AllArgsConstructor
-public class TaskController {
+public class ApiTaskController {
 
     private final TaskService taskService;
 
@@ -39,23 +39,23 @@ public class TaskController {
     public ResponseEntity<List<TaskDto>> getAllTasks() {
         List<TaskDto> allTasks = taskService.getAll();
         if (!allTasks.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(allTasks);
+            return ResponseEntity.status(HttpStatus.OK).body(allTasks);
         } else {
             return ResponseEntity.ok(allTasks);
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> finishTask(@PathVariable Long id, @RequestBody TaskDto taskDto) {
-        return taskService.updateTask(id, taskDto)
-                .map(taskDto1 -> ResponseEntity.noContent().build())
+    public ResponseEntity<Object> completedTask(@PathVariable Long id, @RequestBody TaskDto taskDto) {
+        return taskService.completedTaskRequest(id, taskDto)
+                .map(taskDto1 -> ResponseEntity.ok().build())
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/task/{id}")
-    public ResponseEntity<Object> replaceTask(@PathVariable Long id, @RequestBody TaskDto taskDto) {
-        return taskService.replaceTask(id, taskDto)
-                .map(taskDto1 -> ResponseEntity.noContent().build())
+    public ResponseEntity<Object> updateTask(@PathVariable Long id, @RequestBody TaskDto taskDto) {
+        return taskService.updateTask(id, taskDto)
+                .map(taskDto1 -> ResponseEntity.ok().build())
                 .orElse(ResponseEntity.notFound().build());
     }
 
