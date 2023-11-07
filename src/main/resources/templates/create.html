@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj zadanie</title>
+</head>
+<body>
+<h1>Tworzenie zadania</h1>
+<form action="/task/create" method="post" th:object="${task}">
+    <label>
+        <input type="text" name="title" th:id="*{title}" placeholder="Podaj tytuł">
+    </label>
+    <label>
+        <input type="text" name="description" th:id="*{description}" placeholder="Podaj opis">
+    </label>
+    <label>
+        <input type="number" name="priority" th:id="*{priority}" placeholder="Podaj priorytet">
+    </label>
+    <button type="submit">Dodaj zadanie</button>
+</form>
+</body>
+</html>

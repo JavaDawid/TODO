@@ -1,6 +1,6 @@
 package com.example.todo_restapi.service;
 
-import com.example.todo_restapi.exceptions.NoTaskElementException;
+import com.example.todo_restapi.exception.TaskNotExistException;
 import com.example.todo_restapi.mapper.TaskMapper;
 import com.example.todo_restapi.models.Task;
 import com.example.todo_restapi.models.TaskDto;
@@ -46,15 +46,15 @@ public class TaskServiceImplementation implements TaskService {
     }
 
     @Override
-    public Optional<TaskDto> completedTaskRequest(Long id, TaskDto taskDto) {
+    public Optional<TaskDto> completedTaskRequest(Long id) {
         Optional<Task> optionalTask = taskRepository.findById(id);
         if (optionalTask.isPresent()) {
             Task task = optionalTask.get();
-            task.setCompleted(taskDto.isCompleted());
+            task.setCompleted(true);
             Task updatedTask = taskRepository.save(task);
             return Optional.of(taskMapper.taskToTaskDto(updatedTask));
         } else {
-            throw new NoTaskElementException();
+            throw new TaskNotExistException(id);
         }
     }
 
@@ -63,18 +63,20 @@ public class TaskServiceImplementation implements TaskService {
         Optional<Task> optionalTask = taskRepository.findById(id);
         if (optionalTask.isPresent()) {
             Task task = optionalTask.get();
+            task.setId(id);
             task.setTitle(taskDto.getTitle());
             task.setDescription(taskDto.getDescription());
             task.setPriority(taskDto.getPriority());
             Task updatedTask = taskRepository.save(task);
             return Optional.of(taskMapper.taskToTaskDto(updatedTask));
         } else {
-            throw new NoTaskElementException();
+            throw new TaskNotExistException(id);
         }
     }
 
     @Override
     public void deleteTask(Long id) {
+        
         taskRepository.deleteById(id);
     }
 }

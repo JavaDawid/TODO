@@ -19,4 +19,7 @@ public class TaskDto {
     private Integer priority;
     private Instant createDate;
     private boolean completed;
+
+    public TaskDto() {
+    }
 }
