@@ -39,14 +39,14 @@ public class MvcTaskController {
 
     @PostMapping("")
     public String updateTask(@RequestParam("id") Long id, @ModelAttribute TaskDto taskDto, Model model) {
-        Optional<TaskDto> taskOptional = taskService.replaceTask(id, taskDto);
+        Optional<TaskDto> taskOptional = taskService.updateTask(id, taskDto);
         taskOptional.ifPresent(task -> model.addAttribute("task", task));
         return "task";
     }
 
     @PostMapping("/end")
     public String endTask(@RequestParam("id") Long id, Model model) {
-        Optional<TaskDto> taskDtoOptional = taskService.endTask(id);
+        Optional<TaskDto> taskDtoOptional = taskService.completedTaskRequest(id);
         taskDtoOptional.ifPresent(task -> model.addAttribute("task", task));
         return "task";
     }

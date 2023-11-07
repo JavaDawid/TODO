@@ -46,8 +46,8 @@ public class ApiTaskController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> completedTask(@PathVariable Long id, @RequestBody TaskDto taskDto) {
-        return taskService.completedTaskRequest(id, taskDto)
+    public ResponseEntity<Object> completedTask(@PathVariable Long id) {
+        return taskService.completedTaskRequest(id)
                 .map(taskDto1 -> ResponseEntity.ok().build())
                 .orElse(ResponseEntity.notFound().build());
     }

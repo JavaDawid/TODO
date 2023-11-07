@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Aktualizacja</title>
 </head>
 <body>
 <form action="/task" method="post">
+    <input type="hidden" name="id" th:value="${task.id}">
     <label>
-        <input type="text" name="title" placeholder="Podaj tytuł">
+        <input type="text" name="title" th:value="${task.title}" placeholder="Podaj tytuł">
     </label>
     <label>
-        <input type="text" name="description" placeholder="Podaj opis">
+        <input type="text" name="description" th:value="${task.description}" placeholder="Podaj opis">
     </label>
     <label>
-        <input type="number" name="priority" placeholder="Podaj priorytet">
+        <input type="number" name="priority" th:value="${task.priority}" placeholder="Podaj priorytet">
     </label>
+    <input type="hidden" name="createDate" th:value="${task.createDate}">
+    <input type="hidden" name="completed" th:value="${task.completed}">
+
     <button type="submit">Aktualizuj zadanie</button>
 </form>
 </body>

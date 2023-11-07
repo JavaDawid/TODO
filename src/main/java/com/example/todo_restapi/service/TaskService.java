@@ -14,7 +14,7 @@ public interface TaskService {
 
     List<TaskDto> getAll();
 
-    Optional<TaskDto> completedTaskRequest(Long id, TaskDto taskDto);
+    Optional<TaskDto> completedTaskRequest(Long id);
 
     Optional<TaskDto> updateTask(Long id, TaskDto taskDto);
 
