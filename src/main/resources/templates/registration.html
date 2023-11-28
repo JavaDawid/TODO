@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Zarejestruj się</title>
+
+    <style>
+        .container {
+            margin: 0 auto;
+            max-width: 400px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 32px;
+            align-items: center;
+        }
+
+        .register-header,
+        .form-item {
+            text-align: center;
+        }
+
+        .form-item {
+            margin: 4px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="register-header">Zarejestruj się</h1>
+    <form class="login-form" th:action="/register" method="post" th:object="${user}">
+        <label><input th:field="*{email}" placeholder="E-mail / nazwa użytkownika" type="email"
+                      class="form-item"></label>
+        <label><input th:field="*{password}" placeholder="Hasło" type="password" class="form-item"></label>
+        <label><input th:field="*{firstName}" placeholder="Imię" class="form-item"></label>
+        <label><input th:field="*{lastName}" placeholder="Nazwisko" class="form-item"></label>
+        <button type="submit" class="form-item">Zarejestruj się</button>
+    </form>
+</div>
+</body>
+</html>

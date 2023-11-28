@@ -9,6 +9,7 @@ import java.time.Instant;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class TaskDto {
     private Long id;
     @NonNull
@@ -19,7 +20,4 @@ public class TaskDto {
     private Integer priority;
     private Instant createDate;
     private boolean completed;
-
-    public TaskDto() {
-    }
 }

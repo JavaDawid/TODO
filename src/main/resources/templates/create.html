@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Tworzenie zadania</h1>
-<form action="/task/create" method="post" th:object="${task}">
+<form th:action="@{/task/create}" method="post" th:object="${task}">
     <label>
         <input type="text" name="title" th:id="*{title}" placeholder="Podaj tytuł">
     </label>

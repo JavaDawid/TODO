@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Zarządzaj swoim dniem</title>
@@ -9,29 +9,49 @@
             text-align: center;
         }
 
-        input {
+        .form-item-id {
             width: 35px;
+            margin: 4px;
         }
+
+        .form-item-password {
+            width: 100px;
+            margin: 4px;
+        }
+
+        .form-item {
+            margin: 4px;
+        }
+
     </style>
 </head>
 <body>
-<h1>Wybierz odpowiednie działanie</h1>
+<h1 th:text="|Witaj ${username} wybierz odpowiednie działanie|">Witaj nieznajomy wybierz odpowiednie działanie</h1>
 <div>
-    <form action="/task/tables" method="get">
-        <button type="submit">Wyświetl całą tabelę</button>
+    <form th:action="@{/task/tables}" method="get">
+        <button type="submit" class="form-item">Wyświetl całą tabelę</button>
     </form>
 
-    <form action="/task" method="get">
+    <form th:action="@{/task}" method="get">
         <label>
-            <input type="number" name="id" id="id" placeholder="ID">
+            <input type="number" name="id" id="id" class="form-item-id" placeholder="ID">
         </label>
-        <button type="submit">Wyświetl zadanie</button>
+        <button type="submit" class="form-item">Wyświetl zadanie</button>
     </form>
 
-    <form action="/task/create" method="get">
-        <button type="submit">Dodaj zadanie</button>
+    <form th:action="@{/task/create}" method="get">
+        <button type="submit" class="form-item">Dodaj zadanie</button>
     </form>
 
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" class="form-item">Wyloguj</button>
+    </form>
+    <form th:action="@{/change-password}" method="post">
+        <label>
+            <input type="password" name="newPassword" class="form-item-password" placeholder="Nowe hasło">
+        </label>
+        <button type="submit" class="form-item">Zmień hasło</button>
+    </form>
 </div>
 </body>
 </html>

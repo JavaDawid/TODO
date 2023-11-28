@@ -12,6 +12,10 @@
             text-align: center;
             display: block;
         }
+
+        .form-button {
+            margin: 3px;
+        }
     </style>
 </head>
 <body>
@@ -23,19 +27,19 @@
 <p th:text="${'Data utworzenia:' +#temporals.format(task.createDate,'dd-MM-yyyy HH:mm')}">Data utworzenia</p>
 <p th:text="${'Zakończone:' +task.completed}">Czy jest zakończone</p>
 
-<form action="/task/update" method="get">
+<form th:action="@{/task/update}" method="get">
     <input type="hidden" name="id" th:value="${task.id}">
-    <button type="submit">Edytuj zadanie</button>
+    <button type="submit" class="form-button">Edytuj zadanie</button>
 </form>
 
-<form action="/task/end" method="post">
+<form th:action="@{/task/end}" method="post">
     <input type="hidden" name="id" th:value="${task.id}">
-    <button type="submit">Zakończ zadanie</button>
+    <button type="submit" class="form-button">Zakończ zadanie</button>
 </form>
 
-<form action="/task/delete" method="post">
+<form th:action="@{/task/delete}" method="post">
     <input type="hidden" name="id" th:value="${task.id}">
-    <button type="submit">Usuń zadanie</button>
+    <button type="submit" class="form-button">Usuń zadanie</button>
 </form>
 
 <a href="/">Strona główna</a>
