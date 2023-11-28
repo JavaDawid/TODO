@@ -13,7 +13,7 @@
 
 #### DESCRIPTION ####
 
-TODO application it resolve problem forgeting thinks with you should do at the day. Thanks easy to use interface at browser you can create account and after manage your tasks.
+TODO application it resolve problem forgetting things with you should do at the day. Thanks an easy-to-use interface at browser you can create account and after manage your tasks.
 TODO app give you possibility creating, deleting, ending and also modifying your tasks. Thanks Framework Spring Boot you can keep calm about your notes. Your account it's protected by your strong password and any hacker can't hack that.
 
 
