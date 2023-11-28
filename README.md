@@ -1,18 +1,22 @@
 # TODO APPLICATION #
 
 ## TABLE OF CONTENTS ##
-* <a href="https://github.com/JavaDawid/codingchallenges/blob/master/README.md#description"> Description </a>
+* <a href="https://github.com/JavaDawid/TODO#description"> Description </a>
 
-* <a href="https://github.com/JavaDawid/codingchallenges/blob/master/README.md#dependencies"> Dependencies </a>
+* <a href="https://github.com/JavaDawid/TODO#dependencies"> Dependencies </a>
 
-* <a href="https://github.com/JavaDawid/codingchallenges/blob/master/README.md#testing"> Testing </a>
+* <a href=""> Using </a>
+
+* <a href="https://github.com/JavaDawid/TODO#testing"> Testing </a>
 
 * <a href="https://github.com/JavaDawid/TODO#licence"> Licence </a>
+
 
 #### DESCRIPTION ####
 
 TODO application it resolve problem forgeting thinks with you should do at the day. Thanks easy to use interface at browser you can create account and after manage your tasks.
-TODO app give you possibility creating, deleting, ending and also modifying your tasks. Thanks Framework Spring Boot you can keep calm about your notes. Your account it's protected by your strong password and any hacker can't hack that.
+TODO app give you possibility creating, deleting, ending and also modifying your tasks. Thanks Framework Spring Boot Security you can keep calm about your notes. Your account it's protected by your strong password and any hacker can't hack that.
+
 
 
 #### DEPENDENCIES ####
@@ -31,6 +35,15 @@ TODO app give you possibility creating, deleting, ending and also modifying your
   - jjwt-0.9.1
 
 
+  #### USING ####
+
+  1.  At browser past <i> localhost:8080/login </i> and before your eyes will apper that view. It's login window where you should write your login data. If you use that first time please choose option <i> Zarejestruj się </i> where you can create account. 
+      ![x2](https://github.com/JavaDawid/TODO/assets/122672760/73c1a19c-2e75-4fa0-bc98-7d02b884177a)
+
+  2. After creating account you should see message <i> Rejestracja zakończona </i>. That mean your account it's created and now you can login to the service. At the service you can see all manage your tasks.
+      ![x3](https://github.com/JavaDawid/TODO/assets/122672760/4e25f71e-c829-46b2-be75-faa7d4fa3a62)
+
+  3. 
   #### TESTING ####
   In progress...
   
