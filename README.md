@@ -1,13 +1,13 @@
 # TODO APPLICATION #
 
 ## TABLE OF CONTENTS ##
-* <a href="https://github.com/JavaDawid/codingchallenges/blob/master/README.md#description"> Description </a>
+* <a href="https://github.com/JavaDawid/TODO#description"> Description </a>
 
-* <a href="https://github.com/JavaDawid/codingchallenges/blob/master/README.md#dependencies"> Dependencies </a>
+* <a href="https://github.com/JavaDawid/TODO#dependencies"> Dependencies </a>
 
-* <a href="">Using </a>
+* <a href="https://github.com/JavaDawid/TODO#using">Using </a>
 
-* <a href="https://github.com/JavaDawid/codingchallenges/blob/master/README.md#testing"> Testing </a>
+* <a href="https://github.com/JavaDawid/TODO#testing"> Testing </a>
 
 * <a href="https://github.com/JavaDawid/TODO#licence"> Licence </a>
 
