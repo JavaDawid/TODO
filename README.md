@@ -7,7 +7,7 @@
 
 * <a href="https://github.com/JavaDawid/codingchallenges/blob/master/README.md#testing"> Testing </a>
 
-* <a href="https://github.com/JavaDawid/codingchallenges/blob/master/README.md#licence"> Licence </a>
+* <a href="https://github.com/JavaDawid/TODO#licence"> Licence </a>
 
 #### DESCRIPTION ####
 
