@@ -24,4 +24,8 @@ public class Task {
     private Instant createDate;
     @NonNull
     private boolean completed;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @NonNull
+    private User user;
 }
